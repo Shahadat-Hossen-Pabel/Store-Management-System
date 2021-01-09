@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+		<div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg1.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 style="color: #fff;font-size: 30px;font-weight: 140px;font-family: bold" class="mb-0 bread">{{ object.title }}</h1>
+            <p class="breadcrumbs">
+              <span class="mr-2">
+                <a style="color: #fff;font-size: 20px;font-weight: 140px;font-family: bold" href="/./">Home</a>
+              </span> 
+              <span style="color: #fff;font-size: 20px;font-weight: 140px;font-family: bold">Product</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+		
+		<section class="ftco-section bg-light">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-lg-6 mb-5 ftco-animate">
+    				<a href="images/menu-2.jpg" class="image-popup">
+              <img  src="{{ object.image.url }}" class="img-fluid" alt="Colorlib Template">
+            </a>
+    			</div>
+    			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+    				<h3>{{ object.title }}</h3>
+    				<p class="price">
+              {% if object.discount_price %}
+                <span>৳{{ object.discount_price }}</span>
+              {% else %}
+                <span>৳{{ object.price }}</span>
+              {% endif %}
+            </p>
+    				<p>{{ object.description }}</p>
+    				
+          	<p>
+              <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary py-3 px-5">Add to Cart</a>
+            </p>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+{% endblock %}

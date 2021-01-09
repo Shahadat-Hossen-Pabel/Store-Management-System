@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg1.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 style="color: #fff;font-size: 60px;font-weight: 140px;font-family: bold" class="mb-0 bread">Checkout</h1>
+            <p class="breadcrumbs">
+              <span class="mr-2">
+                <a style="color: #fff;font-size: 20px;font-weight: 140px;font-family: bold" href="/./">Home</a>
+              </span> 
+              <span style="color: #fff;font-size: 20px;font-weight: 140px;font-family: bold">Checkout</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+		
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+         	<div class="col-xl-8 ftco-animate">
+			<form method="POST" action="." class=" billing-form bg-light p-3 p-md-5">
+				{% csrf_token %}
+				<h3 class="mb-4 billing-heading">Shipping Address</h3>
+	          	<div class="hideable_shipping_form row align-items-end">
+                	<div class="w-100"></div>
+                	
+				    <div class="col-md-12">
+				        <div class="form-group">
+				           	<label for="country">State / Country</label>
+				            <div class="select-wrap">
+				                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+						        {{forms.shipping_country}}
+				            </div>
+				        </div>
+				    </div>
+			        <div class="w-100"></div>
+			        <div class="col-md-6">
+			           	<div class="form-group">
+		                	<label for="streetaddress">Street Address</label>
+		                  	<input id="shipping_address" name="shipping_address" type="text" class="form-control" placeholder="House number and street name">
+		                </div>
+			        </div>
+			        <div class="col-md-6">
+			            <div class="form-group">
+		                  	<input id="shipping_address2" name="shipping_address2" type="text" class="form-control" placeholder="Appartment, suite, unit etc: (optional)">
+		                </div>
+			        </div>
+			        <div class="w-100"></div>
+			        <div class="col-md-6">
+			           	<div class="form-group">
+		                	<label for="towncity">Town / City</label>
+		                  	<input id="shipping_city" name="shipping_city" type="text" class="form-control" placeholder="">
+		                </div>
+			        </div>
+			        <div class="col-md-6">
+			            <div class="form-group">
+			            	<label for="postcodezip">Postcode / ZIP *</label>
+		                  	<input id="shipping_zip_code" name="shipping_zip_code" type="text" class="form-control" placeholder="">
+		                </div>
+			        </div>
+			        <div class="w-100"></div>
+			        <div class="col-md-6">
+		                <div class="form-group">
+		                	<label for="phone">Phone</label>
+		                  	<input id="shipping_phone_number" name="shipping_phone_number" type="text" class="form-control" placeholder="">
+		                </div>
+		            </div>
+		            <div class="col-md-6">
+		                <div class="form-group">
+		                	<label for="emailaddress">Email Address</label>
+		                  	<input id="shipping_email_address" name="shipping_email_address" type="text" class="form-control" placeholder="">
+		                </div>
+	                </div>
+                	<div class="w-100"></div>
+	        	</div>
+	        	<div class="col-md-12">
+                	<div class="form-group mt-4">
+						<div class="radio">
+							<label class="mr-3">
+								<input id="same_billing_address" type="checkbox" name="same_billing_address"> Same as Billing Address
+								</label>
+							<label>
+								<input name="set_default_shipping" id="set_default_shipping" type="checkbox" name="">Save as default Shipping
+							</label>
+						</div>
+					</div>
+
+					{% if default_shipping_address %}
+						<div class="form-group mt-1">
+							<div class="radio">
+								<label>
+									<input id="set_default_shipping" type="checkbox" name="use_default_shipping">
+									Use default Shipping: {{default_shipping_address.street_address|truncatechars:10 }}
+								</label>
+							</div>
+						</div>
+					{% endif %}
+                </div>
+
+				<hr>
+	            <h3 class="mb-4 billing-heading">Billing Address</h3>
+	          	<div class="hideable_billing_form row align-items-end">
+                	<div class="w-100"></div>
+			        <div class="col-md-12">
+			            <div class="form-group">
+			            	<label for="country">State / Country</label>
+			            		<div class="select-wrap">
+			                		<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+					                {{forms.billing_country}}
+			                	</div>
+			            	</div>
+			         	</div>
+		            <div class="w-100"></div>
+		            <div class="col-md-6">
+		            	<div class="form-group">
+	                		<label for="billing_address">Street Address</label>
+	                  		<input id="billing_address" name="billing_address" type="text" class="form-control" placeholder="House number and street name">
+	                	</div>
+		            </div>
+		            <div class="col-md-6">
+		            	<div class="form-group">
+	                  <input name="billing_address2" type="text" class="form-control" placeholder="Appartment, suite, unit etc: (optional)">
+	                </div>
+		            </div>
+		            <div class="w-100"></div>
+		            <div class="col-md-6">
+		            	<div class="form-group">
+	                	<label for="towncity">Town / City</label>
+	                  <input name="billing_city" type="text" class="form-control" placeholder="">
+	                </div>
+		            </div>
+		            <div class="col-md-6">
+		            	<div class="form-group">
+		            	<label for="postcodezip">Postcode / ZIP *</label>
+	                  	<input id="billing_zip_code" name="billing_zip_code" type="text" class="form-control" placeholder="">
+	                </div>
+		            </div>
+		            <div class="w-100"></div>
+		            <div class="col-md-6">
+	                <div class="form-group">
+	                	<label for="phone">Phone</label>
+	                  <input name="billing_phone_number" type="text" class="form-control" placeholder="">
+	                </div>
+	              </div>
+	              <div class="col-md-6">
+	                <div class="form-group">
+	                	<label for="emailaddress">Email Address</label>
+	                  <input name="billing_email_address" type="text" class="form-control" placeholder="">
+	                </div>
+                </div>
+                <div class="w-100"></div>
+	        </div>
+
+	        <div class="col-md-12">
+                <div class="form-group mt-4">
+                	{% if default_billing_address %}
+						<div class="radio">
+							<label>
+								<input type="checkbox" name="use_default_billing"> Use default Billing: {{ default_billing_address.street_address|truncatechars:10 }}
+							</label>
+						</div>
+					{% endif %}
+					
+				</div>
+           	</div>
+           	<hr>
+           	<h3>PAYMENT OPTION</h3>
+           	<hr>
+
+           	{% for value, name in forms.fields.payment_option.choices %}
+	           	<div class="form-group">
+					<div class="col-md-12">
+						<div class="radio">
+							<label for="{{ name }}">
+							<input  id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" name="optradio" class="mr-2">{{ name }}
+							</label>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+           	<button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+	    </form><!-- END -->
+    </div> <!-- .col-md-8 -->
+     <div class="col-xl-4 d-flex">
+	    <div class="cart-detail  cart-total p-md-4">
+	    	<div class="bg-light p-4">
+	        {% for order_item in order.items.all %}
+		        <h3 class="billing-heading mb-4">Cart Total</h3>
+		        <p class="d-flex">
+			    	<span>Subtotal</span>
+			    	<span>${{ order_item.get_final_price }}</span>
+			    </p>
+			    <p class="d-flex">
+			    	<span>Amount Saved</span>
+			    	<span>${{ order_item.get_amount_saved }}</span>
+			    </p>
+		    {% endfor %}
+
+		    {% if order.coupon %}
+			    <p class="d-flex">
+				   	<span>Promo code</span>
+				    <span>{{ order.coupon.code }}</span>
+				</p>
+				<p class="d-flex">
+				    <span>Promo Amount</span>
+				    <span>-${{ order.coupon.amount }}</span>
+				</p>
+			{% endif %}
+			{% if DISPLAY_COUPON_FORM %}
+			    <form method="POST" action="{% url 'core_main:add-coupon' %}"  class="card p-2">
+			    {% csrf_token %}
+					<div class="input-group">				              
+		                {{ couponform.code }}
+					    <div class="input-group-append">
+					        <button class="btn btn-secondary btn-md waves-effect m-0" type="submit">Redeem</button>
+					    </div>
+					</div>
+				</form>
+			{% endif %}
+		    <hr>
+		    <p class="d-flex total-price">
+		    	<span>Total</span>
+		    	<span>${{ order.get_total }}</span>
+		    </p>
+		</div>
+		</div>
+	</div>
+	        
+    </div>  
+    </div>
+</section> <!-- .section -->
+{% endblock %}
+
+
+{% block extra_scripts %}
+  <script>
+    var hideable_shipping_form = $('.hideable_shipping_form');
+    var hideable_billing_form = $('.hideable_billing_form');
+
+    var same_as_billing_shipping = document.querySelector("input[name=same_billing_address]");
+   
+    var use_default_shipping = document.querySelector("input[name=use_default_shipping]");
+
+    var use_default_billing = document.querySelector("input[name=use_default_billing]");
+
+    same_as_billing_shipping.addEventListener('change', function() {
+      if (this.checked){
+        hideable_billing_form.hide();
+      }
+      else{
+        hideable_billing_form.show();
+      }
+    })
+
+    use_default_shipping.addEventListener('change', function() {
+      if (this.checked){
+        hideable_shipping_form.hide();
+      }
+      else{
+        hideable_shipping_form.show();
+      }
+    })
+
+    use_default_billing.addEventListener('change', function() {
+      if (this.checked){
+        hideable_billing_form.hide();
+      }
+      else{
+        hideable_billing_form.show();
+      }
+    })
+
+
+  </script>
+{% endblock %}

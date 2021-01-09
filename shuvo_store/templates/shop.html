@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+	<div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg1.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 style="color: #fff;font-size: 60px;font-weight: 140px;font-family: bold" class="mb-0 bread">Best Collection</h1>
+            <p class="breadcrumbs">
+              <span class="mr-2">
+                <a style="color: #fff;font-size: 20px;font-weight: 140px;font-family: bold" href="/./">Home</a>
+              </span> 
+              <span style="color: #fff;font-size: 20px;font-weight: 140px;font-family: bold">Product</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+		
+	<section class="ftco-section bg-light">
+    	<div class="container-fluid">
+    		<div class="row">
+          {% for obj in category_set %}
+      			<div class="col-sm col-md-6 col-lg-3 ftco-animate">
+      				<div class="product">
+      					<a href="{{ obj.get_absolute_url }}" class="img-prod">
+                  <img style="height: 350px;width: 450px" class="img-fluid"   src="{{ obj.image.url }}" alt="Colorlib Template">
+      					</a>
+      					<div class="text py-3 px-3">
+      						<h3><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h3>
+      						<div class="d-flex">
+      							<div class="pricing">
+  		    						<p class="price">
+                        {% if obj.discount_price %}
+                          <span class="mr-2 price-dc">৳{{ obj.price }}</span>
+                          <span class="price-sale">৳{{ obj.discount_price }}</span>
+                        {% else %}
+                          <span class="price-sale">৳{{ obj.price }}</span>
+                        {% endif %}
+                      </p>
+  		    					</div>
+  	    					</div>
+  	    					<hr>
+      						<p class="bottom-area d-flex">
+      							<a href="{{ obj.get_absolute_url }}" class="add-to-cart">
+                      <span>Add to cart <i class="ion-ios-add ml-1"></i></span>
+                     </a>
+      						</p>
+      					</div>
+      				</div>
+      			</div>
+          {% endfor %}
+    		</div>
+        <hr>
+    		<!-- <div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+                <li><a href="#">&lt;</a></li>
+                <li class="active"><span>1</span></li>
+                
+                
+                <li><a href="#">&gt;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+    	</div>
+    </section>
+
+{% endblock %}

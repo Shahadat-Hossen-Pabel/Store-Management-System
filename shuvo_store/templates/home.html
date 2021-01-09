@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+	<!-- Hero section -->
+	<section class="hero-section">
+		<div class="hero-slider owl-carousel ">
+			
+			<div class="hs-item set-bg" data-setbg="{% static 'images/bg1.jpg' %}">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-6 col-lg-7 text-white">
+							<h2 style="color: #f51167;">We Serve Best and Fresh Food</h2>
+							
+							<a href="/products" class="site-btn btn btn-primary py-3 px-5 sb-white">SHOP NOW</a>
+						</div>
+					</div>
+					<div class="offer-card text-white">
+						<span>from</span>
+						<h2>৳29</h2>
+						
+					</div>
+				</div>
+			</div>
+			<div class="hs-item set-bg" data-setbg="{% static 'images/bg-4.jpg' %}">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-6 col-lg-7 text-white">
+							<h2 style="color: #f51167">We Serve Best and Fresh Food</h2>
+							
+							<a href="/products" class="site-btn btn btn-primary py-3 px-5 sb-white">SHOP NOW</a>
+						</div>
+					</div>
+					<div class="offer-card text-white">
+						<span>from</span>
+						<h2>৳29</h2>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="slide-num-holder" id="snh-1"></div>
+		</div>
+	</section>
+	<!-- Hero section end -->
+
+    <div class="goto-here"></div>
+    
+   <section class="ftco-section bg-light">
+      <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+            <h1 class="big">Products</h1>
+            <h2 class="mb-4">Featured Products</h2>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+        {% for obj in object_list %}
+          <div class="col-sm col-md-6 col-lg-4 col-xl-3 ftco-animate">
+            <div class="product">
+              <a href="{{ obj.get_absolute_url }}" class="img-prod">
+              	<img style="height: 350px;width: 450px" class="img-fluid" src="{{ obj.image.url }}" alt="Colorlib Template"/>
+          	  </a>
+              <div class="text py-3 px-3">
+                <h3><a href="#">{{ obj.title }}</a></h3>
+                <div class="d-flex">
+                  <div class="pricing">
+                    <p class="price"><span>৳{{ obj.discount_price }}</span></p>
+                  </div>
+                  <div class="rating">
+                    <p class="text-right">
+                      <span class="ion-ios-star-outline"></span>
+                      <span class="ion-ios-star-outline"></span>
+                      <span class="ion-ios-star-outline"></span>
+                      <span class="ion-ios-star-outline"></span>
+                      <span class="ion-ios-star-outline"></span>
+                    </p>
+                  </div>
+                </div>
+                <hr />
+                <p class="bottom-area d-flex">
+                  <a href="{{ obj.get_absolute_url }}" class="add-to-cart"
+                    ><span>Add to cart <i class="ion-ios-add ml-1"></i></span
+                  ></a>
+                  <a href="{{ obj.get_absolute_url }}" class="ml-auto"
+                    ><span><i class="ion-ios-heart-empty"></i></span
+                  ></a>
+                </p>
+              </div>
+            </div>
+
+          </div>
+       	{% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url({% static 'images/bg1.jpg' %});">
+    	<div class="container">
+    		<div class="row justify-content-center py-5">
+    			<div class="col-md-10">
+		    		<div class="row">
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong style="color: #fff;font-size: 60px;font-weight: 140px;font-family: bold" class="number" data-number="243">0</strong>
+		                <span style="color: #fff;margin-right: 55px ;font-size: 60px;font-weight: 140px;font-family: bold">Customers</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong style="color: #fff;font-size: 60px;font-weight: 140px;font-family: bold" class="number" data-number="10">0</strong>
+		                <span style="color: #fff;font-size: 60px;font-weight: 140px;font-family: bold">Branches</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong style="color: #fff;font-size: 60px;font-weight: 140px;font-family: bold" class="number" data-number="3">0</strong>
+		                <span style="color: #fff;font-size: 60px;font-weight: 140px;font-family: bold">Partner</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong style="color: #fff;font-size: 60px;font-weight: 140px;font-family: bold" class="number" data-number="10">0</strong>
+		                <span style="color: #fff;font-size: 60px;font-weight: 140px;font-family: bold">Awards</span>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+        </div>
+    	</div>
+    </section>
+
+   
+		
+	
+
+{% endblock %}

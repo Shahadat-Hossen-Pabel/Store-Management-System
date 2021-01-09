@@ -1,0 +1,67 @@
+{% load cart_template_tags %}
+{% load static %}
+
+ <header class="header-section" >
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div style="margin-top: 10px" class="col-lg-2 text-center text-lg-left">
+						<!-- logo -->
+						<a href="/./" class="site-logo">
+							<h6>SHUVO STORE</h6>
+						</a>
+					</div>
+					<div class="col-xl-6 col-lg-5">
+						<form class="header-search-form">
+							<input type="text" placeholder="Search products or category ....">
+							<button><i class="flaticon-search"></i></button>
+						</form>
+					</div>
+					<div class="col-xl-4 col-lg-5">
+						<div style="margin-top: 10px" class="user-panel">
+							{% if request.user.is_authenticated %}
+								<div class="up-item">
+									<!-- <i class="flaticon-profile"></i> -->
+									<i class="fa fa-user" aria-hidden="true"></i>
+									<a href="{% url 'account_logout' %}">LogOut</a>
+								</div>
+								<div class="up-item">
+									<div class="shopping-card">
+										<!-- <i class="flaticon-bag"></i> -->
+										<i class="fa fa-shopping-bag" aria-hidden="true"></i>
+										<span>{{ request.user|cart_item_count }}</span>
+									</div>
+									<a href="{% url 'core_main:cart' %}">Shopping Cart</a>
+								</div>
+							{% else %}
+								<div class="up-item">
+									<!-- <i class="flaticon-profile"></i> -->
+									<i class="fa fa-user" aria-hidden="true"></i>
+									<a href="{% url 'account_login' %}">Sign</a> In or <a href="{% url 'account_signup' %}">Create Account</a>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="main-navbar" style="padding-bottom: 1px">
+			<div class="container">
+				<!-- menu -->
+				<ul class="main-menu">
+					<li>
+						<a href="/products">SHOP</a>
+					</li>
+					{% for cat in category %}
+						<li>
+							<a style="text-transform: uppercase;" href="{{ cat.get_category_url }}">{{ cat.cat_title }}</a>
+						</li>
+					{% endfor %}
+					
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Header section end -->
+
+    <!-- END nav -->
